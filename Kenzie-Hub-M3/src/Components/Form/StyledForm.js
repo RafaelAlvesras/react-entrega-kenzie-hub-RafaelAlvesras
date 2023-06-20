@@ -40,6 +40,17 @@ export const StyledForm = styled.form`
         color: var(--colorGrey1);
     }
 
+    input:focus {
+        ::placeholder {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16.2426px;
+            line-height: 26px;
+            color: var(--colorGrey0);
+        }
+        color: var(--colorGrey0);
+    }
+
     select {
         display: flex;
         flex-direction: row;
@@ -88,6 +99,10 @@ export const StyledForm = styled.form`
         font-size: 12px;
         line-height: 22px;
         color: var(--colorGrey1);
+    }
+
+    .errorWarn {
+        color: var(--colorNegative);
     }
 
     button {

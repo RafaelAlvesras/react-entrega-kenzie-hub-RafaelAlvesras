@@ -22,12 +22,12 @@ export const RegisterPage = () => {
         try {
             const response = await api.post("/users", formData)
             response
-            toast.success("Conta criada com sucesso !")
+            toast.success("Conta criada com sucesso !", { autoClose: 1000,  className: "custom-toast" })
             setTimeout(() => {
                 navigate("/")
             }, 2000)
         } catch {
-            toast.error("Ops! Algo deu errado", { autoClose: 1000 })
+            toast.error("Ops! Algo deu errado", { autoClose: 1000,  className: "custom-toast" })
         }
     }
 
@@ -53,27 +53,27 @@ export const RegisterPage = () => {
 
                     <label htmlFor="inputRegisterName">Nome</label>
                     <input type="text" id="inputRegisterName" placeholder="Digite aqui seu nome" {...register("name")} />
-                    {errors.name ? <p>{errors.name.message}</p> : null}
+                    {errors.name ? <p className="errorWarn">{errors.name.message}</p> : null}
 
                     <label htmlFor="inputRegisterEmail">Email</label>
                     <input type="email" id="inputRegisterEmail" placeholder="Digite aqui seu email" {...register("email")} />
-                    {errors.email ? <p>{errors.email.message}</p> : null}
+                    {errors.email ? <p className="errorWarn">{errors.email.message}</p> : null}
 
                     <label htmlFor="inputRegisterPassword">Senha</label>
                     <input type="password" id="inputRegisterPassword" placeholder="Digite aqui sua senha" {...register("password")} />
-                    {errors.password ? <p>{errors.password.message}</p> : null}
+                    {errors.password ? <p className="errorWarn">{errors.password.message}</p> : null}
 
                     <label htmlFor="confirm">Confirmar Senha</label>
                     <input type="password" id="confirm" placeholder="Digite novamente sua senha" {...register("confirm")} />
-                    {errors.confirm ? <p>{errors.confirm.message}</p> : null}
+                    {errors.confirm ? <p className="errorWarn">{errors.confirm.message}</p> : null}
 
                     <label htmlFor="inputRegisterBio">Bio</label>
                     <input type="text" id="inputRegisterBio" placeholder="Fale sobre você" {...register("bio")} />
-                    {errors.bio ? <p>{errors.bio.message}</p> : null}
+                    {errors.bio ? <p className="errorWarn">{errors.bio.message}</p> : null}
 
                     <label htmlFor="inputRegisterContact">Contato</label>
                     <input type="text" id="inputRegisterContact" placeholder="Opção de contato" {...register("contact")} />
-                    {errors.contact ? <p>{errors.contact.message}</p> : null}
+                    {errors.contact ? <p className="errorWarn">{errors.contact.message}</p> : null}
 
                     <select name="selectModule" id="selectModule" {...register("course_module")}>
                         <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo (Introdução ao Frontend)</option>
@@ -81,7 +81,7 @@ export const RegisterPage = () => {
                         <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</option>
                         <option value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</option>
                     </select>
-                    {errors.course_module ? <p>{errors.course_module.message}</p> : null}
+                    {errors.course_module ? <p className="errorWarn">{errors.course_module.message}</p> : null}
                     <button>Cadastrar</button>
                 </StyledForm>
             </main>

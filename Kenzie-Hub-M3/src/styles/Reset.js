@@ -17,9 +17,9 @@ export const GlobalReset = createGlobalStyle`
 
     body {
         position: relative;
-        font-family: 'Inter', sans-serif;
         background-color: var(--colorGrey4);
         color: var(--colorGrey0);
+        font-family: 'Inter', sans-serif;
     }
 
     main {

@@ -63,11 +63,11 @@ export const HomePage = ({ setUser }) => {
 
                             <label htmlFor="inputLoginEmail">Email</label>
                             <input type="email" id="inputLoginEmail" placeholder="Digite aqui seu email" {...register("email")} />
-                            {errors.email ? <p>{errors.email.message}</p> : null}
+                            {errors.email ? <p className="errorWarn">{errors.email.message}</p> : null}
 
                             <label htmlFor="inputLoginPassword">Senha</label>
                             <input type="password" id="inputLoginPassword" placeholder="Digite aqui sua senha" {...register("password")} />
-                            {errors.password ? <p>{errors.password.message}</p> : null}
+                            {errors.password ? <p className="errorWarn">{errors.password.message}</p> : null}
 
                             <button>Entrar</button>
                             <p>Ainda não possui uma conta ?</p>

@@ -119,4 +119,15 @@ export const StyledMain = styled.main`
         line-height: 28px;
         color: var(--colorGrey0);
     }
+
+    @media(max-width: 768px) {
+        .userModule {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        section {
+            display: none;
+        }
+    }
 `
