@@ -32,7 +32,8 @@ export const StyledHeader = styled.header`
         
         background: var(--colorGrey3);
         border-radius: 4px;
-
+        border: none;
+        
         text-decoration: none;
         font-style: normal;
         font-weight: 600;
@@ -62,8 +63,35 @@ export const StyledMain = styled.main`
         align-items: center;
         justify-content: center;
         width: 100%;
-
         border-bottom: 1px solid var(--colorGrey3);
+    }
+
+    .divCreateTechButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 770px;
+        height: 50px;
+    }
+
+    .createTechButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32.5px;
+        height: 32px;
+        border: none;
+        background: var(--colorGrey3);
+        color: #FFFFFF;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .createTechButton:hover {
+        background: var(--colorGrey2);
     }
     
     .userModule {
@@ -124,10 +152,6 @@ export const StyledMain = styled.main`
         .userModule {
             flex-direction: column;
             align-items: flex-start;
-        }
-
-        section {
-            display: none;
         }
     }
 `

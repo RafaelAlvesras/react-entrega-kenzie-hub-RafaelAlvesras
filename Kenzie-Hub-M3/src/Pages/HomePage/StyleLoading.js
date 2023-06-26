@@ -4,8 +4,8 @@ export const StyledLoading = styled.div`
     border: 1rem solid #f3f3f3;
     border-top: 1rem solid #E83F5B;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 75px;
+    height: 75px;
     animation: spin 2s linear infinite;
 
     @keyframes spin {
