@@ -2,14 +2,15 @@ import { useForm } from "react-hook-form"
 import { useContext, useEffect, useRef } from "react"
 import { TechContext } from "../../../providers/TechContext.jsx"
 import { StyledModal } from "../ModalCreateTech/StyledModal.js"
+import { StyledDivButtons } from "./StyledModalEditDeleteTech.js"
 
 export const EditDeleteForm = () => {
 
-    const { register, handleSubmit, reset } = useForm()
-
-    const { setEditDeleTechOpen, handleTech, techList, updateTech } = useContext(TechContext)
+    const { setEditDeleTechOpen, handleTech, techList, updateTech, deleteTech } = useContext(TechContext)
 
     const techName = techList.filter((tech) => tech.id === handleTech)
+
+    const { register, handleSubmit, reset } = useForm({ defaultValues: { status: techName[0].status } })
 
     useEffect(() => {
 
@@ -33,7 +34,7 @@ export const EditDeleteForm = () => {
 
     return (
         <StyledModal>
-            <form onSubmit={() => handleSubmit(submit)}>
+            <form onSubmit={handleSubmit(submit)}>
                 <div className="topDiv">
                     <h1>Tecnologia Detalhes</h1>
                     <button className="buttonClose" onClick={() => setEditDeleTechOpen(false)}>X</button>
@@ -50,8 +51,10 @@ export const EditDeleteForm = () => {
                         <option value="Avançado">Avançado</option>
                     </select>
 
-                    <button className="buttonSubmit" type="submit">Salvar Alterações</button>
-                    {/* <button className="buttonSubmit" >Excluir</button> */}
+                    <StyledDivButtons>
+                        <button className="buttonEditTech" type="submit">Salvar Alterações</button>
+                        <button className="buttonDeleteTech" onClick={() => { deleteTech(handleTech) }}>Excluir</button>
+                    </StyledDivButtons>
                 </div>
             </form>
         </StyledModal>

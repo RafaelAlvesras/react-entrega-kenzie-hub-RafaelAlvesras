@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import { api } from "../services/api.js"
+import { toast } from "react-toastify"
 
 export const TechContext = createContext({})
 
@@ -24,7 +25,7 @@ export const TechProvider = ({ children }) => {
                 })
                 setTechList(data.techs)
             } catch (error) {
-                console.log(error)
+                toast.error("Ops! Algo deu errado", { autoClose: 1850, className: "custom-toast" })
             } finally {
                 setIsLoading(false)
             }
@@ -37,12 +38,14 @@ export const TechProvider = ({ children }) => {
 
         try {
             setIsLoading(true)
+            console.log(formData)
             const { data } = await api.post("/users/techs", formData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
             setTechList((techList) => [ data, ...techList])
+            toast.success("Nova Tecnologia adicionada !", { autoClose: 1000, className: "custom-toast" })
         } catch (error) {
             console.log(error)
         } finally {
@@ -55,27 +58,43 @@ export const TechProvider = ({ children }) => {
         try {
             const token = localStorage.getItem("@TOKEN")
 
-            const response = await api.put(`/users/techs/${techID}`, currentStatus, {
+            const { data } = await api.put(`/users/techs/${techID}`, currentStatus, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
-            // setTechList((techList) =>
-            //     techList.map((tech) =>
-            //         tech.id === techID ? { ...tech, ...formData } : tech
-            //     ))
-            console.log(response)
+            setTechList((techList) =>
+                techList.map((tech) =>
+                    tech.id === techID ? { ...tech, ...data } : tech
+                ))
+            toast.success("Tecnologia atualizada com sucesso", { autoClose: 1000, className: "custom-toast" })
         } catch (error) {
             console.log(error)
         } finally {
-            console.log(techList)
+            setEditDeleTechOpen(false)
         }
     }
 
+    const deleteTech = async (techID) => {
+        try {
+            const token = localStorage.getItem("@TOKEN")
 
+            await api.delete(`/users/techs/${techID}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            setTechList((techList) => techList.filter((tech) => tech.id !== techID))
+            toast.success("Tecnologia deletada com sucesso !", { autoClose: 1000, className: "custom-toast" })
+        } catch (error) {
+            toast.error("Não foi possível deletar esta tecnologia", { autoClose: 1850, className: "custom-toast" })
+        } finally {
+            setEditDeleTechOpen(false)
+        }
+    }
 
     return (
-        <TechContext.Provider value={{ isLoading, techList, createTech, newTechOpen, setNewTechOpen, editDeleTechOpen, setEditDeleTechOpen, setHandleTech, handleTech, updateTech }}>
+        <TechContext.Provider value={{ isLoading, techList, createTech, newTechOpen, setNewTechOpen, editDeleTechOpen, setEditDeleTechOpen, setHandleTech, handleTech, updateTech, deleteTech}}>
             {children}
         </TechContext.Provider>
     )

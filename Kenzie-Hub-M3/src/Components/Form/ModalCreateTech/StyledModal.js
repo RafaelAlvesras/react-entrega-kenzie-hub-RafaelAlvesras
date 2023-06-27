@@ -115,4 +115,13 @@ export const StyledModal = styled.div`
         font-size: 16.25px;
     }
 
+    .errorWarn {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 22px;
+        color: var(--colorGrey1);
+        color: var(--colorNegative);
+    }
+
 `

@@ -1,13 +1,18 @@
 import { useForm } from "react-hook-form"
-import { useContext, useEffect, useRef } from "react"
+import { useContext, useEffect } from "react"
 import { TechContext } from "../../../providers/TechContext.jsx"
 import { StyledModal } from "./StyledModal.js"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { addSchemaCreateModal } from "./addSchemaCreateModal.js"
+
 
 export const RegisterForm = () => {
 
     const { createTech, setNewTechOpen } = useContext(TechContext)
 
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(addSchemaCreateModal)
+    })
 
     useEffect(() => {
 
@@ -37,8 +42,11 @@ export const RegisterForm = () => {
                     <button className="buttonClose" onClick={() => setNewTechOpen(false)}>X</button>
                 </div>
                 <div className="divInputs">
+                   
                     <label htmlFor="titleNewTech">Nome</label>
                     <input type="text" id="titleNewTech" placeholder="Nome da tecnologia" {...register("title")} />
+                    {errors.title ? <p className="errorWarn">{errors.title.message}</p> : null}
+                    
                     <label htmlFor="selectStatus" >Selecionar status</label>
                     <select name="selectStatus" id="selectStatus" {...register("status")}>
                         <option value="Iniciante">Iniciante</option>
