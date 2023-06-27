@@ -11,6 +11,22 @@ export const StyledTechList = styled.ul`
     background: var( --colorGrey3);
     overflow: auto;
     gap: 20px;
+
+    .noTechDiv {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 60%;
+        color: var(--colorGrey1);
+    }
+
+    @media(max-width: 768px) {
+        .noTechDiv {
+            font-size: 14px;
+            align-items: flex-start;
+       }
+    }
 `
 
 export const StyledTechLi = styled.li`

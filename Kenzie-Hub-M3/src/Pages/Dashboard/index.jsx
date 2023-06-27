@@ -6,11 +6,13 @@ import { ToastContainer } from "react-toastify"
 import { RegisterForm } from "../../Components/Form/ModalCreateTech/NewTechForm.jsx"
 import { TechContext } from "../../providers/TechContext"
 import { TechList } from "../../Components/TechList"
+import { EditDeleteForm } from "../../Components/Form/ModalEditDeleteTech/ModalEditDeleteTech"
+import { StyledTechList } from "../../Components/TechList/StyledTechList"
 
 export const Dashboard = () => {
     
     const { user, logoutUser } = useContext(UserContext)
-    const { newTechOpen, setNewTechOpen } = useContext(TechContext)
+    const { newTechOpen, setNewTechOpen, editDeleTechOpen, techList } = useContext(TechContext)
 
     return (
         <>
@@ -34,7 +36,8 @@ export const Dashboard = () => {
                         <button className="createTechButton" onClick={() => setNewTechOpen(true)}>+</button>
                     </div>
                     {newTechOpen ? (<RegisterForm />) : null}
-                    <TechList />
+                    {techList.length === 0 ? <StyledTechList> <div className="noTechDiv"><h3>Você ainda não cadastrou nenhuma tecnologia</h3></div></StyledTechList> : <TechList />}
+                    {editDeleTechOpen ? (<EditDeleteForm />) : null}
                 </section>
             </StyledMain>
         </>

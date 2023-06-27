@@ -7,7 +7,7 @@ import { UserContext } from "../../providers/UserContext"
 
 export const RegisterForm = () => {
 
-    const { creat } = useContext(UserContext)
+    const { registerUser } = useContext(UserContext)
 
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
