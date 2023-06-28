@@ -38,16 +38,15 @@ export const TechProvider = ({ children }) => {
 
         try {
             setIsLoading(true)
-            console.log(formData)
             const { data } = await api.post("/users/techs", formData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
-            setTechList((techList) => [ data, ...techList])
+            setTechList((techList) => [data, ...techList])
             toast.success("Nova Tecnologia adicionada !", { autoClose: 1000, className: "custom-toast" })
         } catch (error) {
-            console.log(error)
+            toast.error("Ops ! Algo deu errado.", { autoClose: 1000, className: "custom-toast" })
         } finally {
             setNewTechOpen(false)
             setIsLoading(false)
@@ -94,7 +93,7 @@ export const TechProvider = ({ children }) => {
     }
 
     return (
-        <TechContext.Provider value={{ isLoading, techList, createTech, newTechOpen, setNewTechOpen, editDeleTechOpen, setEditDeleTechOpen, setHandleTech, handleTech, updateTech, deleteTech}}>
+        <TechContext.Provider value={{ isLoading, techList, createTech, newTechOpen, setNewTechOpen, editDeleTechOpen, setEditDeleTechOpen, setHandleTech, handleTech, updateTech, deleteTech }}>
             {children}
         </TechContext.Provider>
     )

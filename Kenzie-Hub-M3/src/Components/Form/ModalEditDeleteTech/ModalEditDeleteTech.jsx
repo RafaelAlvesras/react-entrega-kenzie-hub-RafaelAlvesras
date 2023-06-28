@@ -10,7 +10,7 @@ export const EditDeleteForm = () => {
 
     const techName = techList.filter((tech) => tech.id === handleTech)
 
-    const { register, handleSubmit, reset } = useForm({ defaultValues: { status: techName[0].status } })
+    const { register, handleSubmit, reset } = useForm({ defaultValues: { status: techName[0].status }})
 
     useEffect(() => {
 
